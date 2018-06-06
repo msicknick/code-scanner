@@ -29,6 +29,8 @@ if (!class_exists('Code_Scanner')) {
 
             // Load plugin menu
             add_action('admin_menu', array($this, 'add_plugin_menu'));
+            // Settings link
+            add_filter( "plugin_action_links_" . plugin_basename( CS_PATH . 'code-scanner.php' ), array( $this, 'add_settings_link' ) );
 
             // Load admin style sheet and JavaScript.
             add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
@@ -69,8 +71,8 @@ if (!class_exists('Code_Scanner')) {
 
             $screen = get_current_screen();
             if ($this->plugin_screen_hook_suffix == $screen->id) {
-                wp_enqueue_style($this->plugin_slug . '-admin-styles', CS_CSS_URL . 'admin.css', array(), Code_Scanner::VERSION);
-                wp_enqueue_style($this->plugin_slug . '-fontawesome', CS_CSS_URL . 'font-awesome.min.css', array(), Code_Scanner::VERSION);
+                wp_enqueue_style($this->plugin_slug . '-admin-styles', CS_CSS_URL . 'admin.css', array(), self::VERSION);
+                wp_enqueue_style($this->plugin_slug . '-fontawesome', CS_CSS_URL . 'font-awesome.min.css', array(), self::VERSION);
             }
         }
 
@@ -86,7 +88,7 @@ if (!class_exists('Code_Scanner')) {
 
             $screen = get_current_screen();
             if ($this->plugin_screen_hook_suffix == $screen->id) {
-                wp_enqueue_script($this->plugin_slug . '-admin-script', CS_JS_URL . 'admin.js', array(), Code_Scanner::VERSION);
+                wp_enqueue_script($this->plugin_slug . '-admin-script', CS_JS_URL . 'admin.js', array(), self::VERSION);
             }
         }
 
@@ -100,6 +102,17 @@ if (!class_exists('Code_Scanner')) {
                     __('Code Scanner', $this->plugin_slug), __('Code Scanner', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'load_admin_page')
             );
         }
+        
+        /**
+         * Add link in Plugins screen
+         *
+         * @since 1.0.0
+         */
+        public function add_settings_link($links) {
+            $settings_link = '<a href="' . esc_url(get_admin_url(null, 'tools.php?page=code-scanner')) . '">' . "Open Scanner" . '</a>';
+            array_unshift($links, $settings_link);
+            return $links;
+        }
 
         /**
          * Load settings page
@@ -109,74 +122,6 @@ if (!class_exists('Code_Scanner')) {
         public function load_admin_page() {
             include_once(CS_VIEWS_PATH . 'admin.php');
         }
-        
-        /**
-         * Load result html
-         * 
-         * @since 1.0.0
-         */
-        
-        public function load_result($dir_type) {
-        /*
-         * $type: theme, plugin, core
-         */
-
-            switch ($dir_type) {
-                case "theme":
-                    $scan_results = cs_scan_directory($this->themes_root_dir, $this->code_injections);
-                    break;
-                case "plugin":
-                    $scan_results = cs_scan_directory($this->plugins_root_dir, $this->code_injections);
-                    break;
-                case "core":
-                    $scan_results = cs_scan_directory($this->wp_root_dir, $this->code_injections);
-                    break;
-            }
-
-                $directories = $scan_results['directories'];
-
-            if ($scan_results['file_error_count'] > 0) { ?>
-                <div class="cs-error-count">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Possible malicious code found in <?php echo $scan_results['file_error_count']; ?> files (<?php echo $scan_results['dir_error_count']; ?> directories).
-                </div> 
-            <?php } else { ?>
-                <div class="cs-no-errors">
-                    <i class="fa fa-check-circle" aria-hidden="true"></i> No errors were found in this directory.
-                </div> 
-            <?php } ?>  
-
-                <?php foreach ($directories as $directory => $files) { ?>
-                    <div class='cs-directory-container'>
-                        <div class='cs-directory' onclick="cs_showHideSlide('spn-<?php echo $directory; ?>', 'div-<?php echo $directory; ?>');"><i class='fa fa-folder-open-o' aria-hidden='true' style='margin-right:10px;'></i><?php echo $directory; ?>
-                            <span class='cs-toggle-button dashicons dashicons-arrow-up' id='<?php echo "spn-" . $directory; ?>'></span>
-                        </div>
-                        <div style="display:none;" id='div-<?php echo $directory; ?>'>
-                            <?php
-                            foreach ($files AS $file => $errors) {
-                                $filename = substr($file, strrpos($file, '/') + 1);
-                                ?>
-                                <div class='cs-file-container'>                    
-                                    <div class='cs-file' onclick="cs_showHideSlide(<?php echo "'spn-" . $directory . "-" . str_replace(".php", "", $filename) . "', 'div-" . $directory . "-" . str_replace(".php", "", $filename) . "'"; ?>);">
-                                        <i class='fa fa-file-o' aria-hidden='true' style='margin-right:10px;'></i><b><?php echo $filename; ?></b>
-                                        <?php if($dir_type != 'core') { ?>
-                                        <span style='margin-left:5px;font-size:13px;'><a href='#' onclick="window.open('<?php echo cs_get_edit_link($dir_type, $directory, $filename); ?>');event.stopPropagation();">Edit</a></span>
-                                        <?php } ?>
-                                        <span class='cs-toggle-button dashicons dashicons-arrow-down' id='<?php echo "spn-" . $directory . "-" . str_replace(".php", "", $filename); ?>'></span>
-                                    </div>
-                                    <div class='cs-lines-container' id='<?php echo "div-" . $directory . "-" . str_replace(".php", "", $filename); ?>'>
-                                        <?php foreach ($errors AS $error) { ?>
-                                            <div class='cs-line-container'>
-                                                <div class='cs-line-index'><?php echo $error['line_index']; ?></div>
-                                                <div class='cs-line'><?php echo preg_replace("/(" . preg_quote($error['injection']) . ")/", "<span class=\"cs-line-injection\">$1</span>", $error['line']); ?></div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                <?php } 
-        } 
 
     }
 

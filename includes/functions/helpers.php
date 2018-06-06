@@ -27,9 +27,6 @@ function cs_get_edit_link($dir_type, $directory, $filename) {
         case "plugin":
             $edit_link = admin_url('plugin-editor.php?file=' . $directory . '%2F' . $filename . '&plugin=' . $directory . "%2Facf.php");
             break;
-        case "core":
-            $edit_link = cs_scan_directory($this->core_root_dir);
-            break;
     }
     
     return $edit_link;

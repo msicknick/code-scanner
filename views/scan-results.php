@@ -3,13 +3,25 @@
         <h2>Scan results:</h2>
         <div id="scan-results-inner">
             <h3 class='dashicons-before dashicons-admin-plugins'>  Plugins:</h3>
-            <?php echo Code_Scanner::load_result('plugin'); ?>
+            <?php
+            $this->dir_type = 'plugin';
+            $this->scan_results = cs_scan_directory($this->plugins_root_dir, $this->code_injections);
+            require(CS_VIEWS_PATH . 'scan-result.php');
+            ?>
 
-            <h3 class='dashicons-before dashicons-admin-plugins'>  Themes:</h3>
-            <?php echo Code_Scanner::load_result('theme'); ?>
+            <h3 class='dashicons-before dashicons-admin-appearance'>  Themes:</h3>
+            <?php
+            $this->dir_type = 'theme';
+            $this->scan_results = cs_scan_directory($this->themes_root_dir, $this->code_injections);            
+            require(CS_VIEWS_PATH . 'scan-result.php');
+            ?>
 
-            <h3 class='dashicons-before dashicons-admin-plugins'>  Core files:</h3>
-            <?php echo Code_Scanner::load_result('core'); ?>
+            <h3 class='dashicons-before dashicons-wordpress'>  Core files:</h3>
+            <?php 
+            $this->dir_type = 'code';
+            $this->scan_results = cs_scan_directory($this->wp_root_dir, $this->code_injections);
+            require(CS_VIEWS_PATH . 'scan-result.php');
+            ?>
         </div>
     </div>
 </div>
