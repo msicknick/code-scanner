@@ -147,7 +147,7 @@
 }
 
 .cs-line-index {
-    display:inline-block;
+    display:table-cell;
     width:30px;
     text-align: right;
     color:orange;
@@ -158,7 +158,7 @@
 }
 
 .cs-line {
-    display:inline-block;
+    display:table-cell;
     font-family:consolas;
     vertical-align: text-top;
     font-size: 11px;
