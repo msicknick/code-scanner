@@ -1,0 +1,201 @@
+/*
+*/
+.cs-wrapper {
+    display: table;
+    width: 100%;
+}
+
+.cs-wrapper #content, 
+.cs-wrapper #scan-results {
+    min-width: 800px;
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ececec;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding:15px;
+}
+
+.cs-wrapper #sidebar {
+    padding: 0 0 0 20px;
+    width: 400px;
+}
+
+.cs-wrapper .cs-wrapper-cell {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.cs-wrapper #content h2 {
+    margin: 20px 0 0 0;    
+    padding: 20px 15px 10px 15px;
+    border-top: 1px solid #ececec;
+}
+
+.cs-wrapper #sidebar .cs-sidebar-box {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ececec;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    min-width: 255px;
+    line-height: 1;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.cs-wrapper #sidebar .cs-sidebar-box h3 {
+    margin: 0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ececec;
+}
+
+.cs-wrapper #sidebar .cs-sidebar-box-inner {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.4em;
+    padding: 0 12px 12px;
+}
+
+.cs-wrapper #content {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1em;
+}
+
+.cs-table tr th {
+    font-weight:600;
+    text-align:left;
+    padding-right:5px;
+}
+
+.cs-wrapper #content h2:first-of-type, 
+.cs-wrapper #content h3:first-of-type {
+    margin-top:0 !important;
+    border-top:none !important;
+    padding-top:10px !important;
+}
+
+.cs-wrapper #content ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-padding-start: 40px;
+}
+
+.cs-wrapper #content p {
+    font-size:14px;
+    font-weight:normal;
+    margin: 5px 0 5px 30px
+}
+
+.cs-wrapper #scan-results {
+    padding: 0;
+    margin-top: 15px;
+}
+
+.cs-wrapper #scan-results h2 {
+    margin: 0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ececec;
+}
+
+.cs-wrapper #scan-results-inner {
+    padding: 0 15px 15px 15px;
+}
+
+.cs-wrapper #scan-results-inner h3 {
+    margin: 1em 0 0.5em 0;
+}
+
+.cs-directory-container,
+.cs-file-container{    
+    border:1px solid #a9a9a9;    
+    margin-top:10px;
+    border-radius: 5px;
+}
+
+.cs-file-container:last-of-type {
+    margin-bottom:10px;
+}
+
+.cs-directory-container {
+    padding:0 10px;
+    background-color:#f9f9f9;
+}
+
+.cs-file-container {
+    padding:0 10px;
+    background-color: #fff;
+}
+
+.cs-directory {
+    font-size: 16px;
+    margin-left: 5px;
+    cursor:pointer;
+    padding: 10px 0;
+}
+.cs-file {
+    font-size: 13px;
+    margin-left: 5px;
+    cursor:pointer;
+    padding: 10px 0;
+}
+.cs-lines-container {
+    padding:10px 0;
+    background-color:#34495e;
+}
+
+.cs-line-container {    
+    color: #ccc;
+    padding: 5px 10px;
+}
+
+.cs-line-index {
+    display:inline-block;
+    width:30px;
+    text-align: right;
+    color:orange;
+    font-family:consolas;
+    vertical-align: text-top;
+    font-size: 11px;
+    font-weight:normal;
+}
+
+.cs-line {
+    display:inline-block;
+    font-family:consolas;
+    vertical-align: text-top;
+    font-size: 11px;
+    padding-left:10px;
+}
+
+.cs-line-injection {
+    color: #cd5c5c;
+}
+
+.cs-toggle-button {
+    float:right;
+    font-size:20px !important;
+    cursor:pointer;
+}
+
+.cs-toggle-button:hover {
+    color:#0073aa;
+}
+
+.cs-error-count {
+    padding: 10px;
+    background-color: #cd5c5c;
+    margin-bottom: 15px;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.cs-no-errors {
+    padding: 10px;
+    background-color: #3cb371;
+    margin-bottom: 15px;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: 600;
+
+}
