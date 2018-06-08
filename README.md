@@ -15,4 +15,4 @@ Then, from your WordPress administration panel, go to `Plugins > Add New` and cl
 You can download a stable version from [Code Scanner WordPress Plugin](https://wordpress.org/plugins/code-scanner) or search in the WordPress Plugin directory for `code scanner`
 
 ## License
-Code Scanner WordPress Plugin is licensed under the [GNU General Public License](https://www.gnu.org/licenses/gpl-2.0.html) and is available for free
+Code Scanner WordPress Plugin is licensed under the [GNU General Public License](https://www.gnu.org/licenses/gpl-2.0.html) and is available for free.
