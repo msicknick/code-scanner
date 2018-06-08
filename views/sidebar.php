@@ -2,7 +2,7 @@
     <div class="cs-sidebar-box">
         <h3><?php _e('Plugin Info', $this->plugin_slug); ?></h3>
         <div class="cs-sidebar-box-inner">
-            <?php $plugin_data = cs_plugin_info($this->plugin_slug); ?>
+            <?php $plugin_data = Code_Scanner_Functions::plugin_info($this->plugin_slug); ?>
             <table class="cs-table">
                 <tr>
                     <td>
@@ -40,7 +40,7 @@
                         GitHub: 
                     </th>
                     <td>
-                        <?php echo '<a href="' . CS_GITHUB_URL . basename($plugin_data['PluginURI']) . '" target="_blank">' . $this->plugin_slug . '</a>'; ?>
+                        <?php echo '<a href="' . CODE_SCANNER_GITHUB_URL . basename($plugin_data['PluginURI']) . '" target="_blank">' . $this->plugin_slug . '</a>'; ?>
                     </td>
                 </tr>
             </table>        

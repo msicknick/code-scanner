@@ -9,7 +9,7 @@
  *  Author URI:   https://www.msicknick.com/
  *  License:      GPL2
  *  License URI:  https://www.gnu.org/licenses/gpl-2.0.html
- *  Text Domain:  cs
+ *  Text Domain:  code-scanner
  */
 
 /**
@@ -23,29 +23,28 @@ if (!defined('ABSPATH')) {
 /**
  * DEFINE PATHS
  */
-define('CS_PATH', plugin_dir_path(__FILE__));
-define('CS_VIEWS_PATH', CS_PATH . 'views/');
-define('CS_CLASSES_PATH', CS_PATH . 'includes/classes/');
-define('CS_FUNCTIONS_PATH', CS_PATH . 'includes/functions/');
+define('CS_MS_PATH', plugin_dir_path(__FILE__));
+define('CS_MS_VIEWS_PATH', CS_MS_PATH . 'views/');
+define('CS_MS_INCLUDES_PATH', CS_MS_PATH . 'includes/');
 
 /**
  * DEFINE URLS
  */
-define('CS_URL', plugin_dir_url(__FILE__));
-define('CS_JS_URL', CS_URL . 'assets/js/');
-define('CS_CSS_URL', CS_URL . 'assets/css/');
-define('CS_IMAGES_URL', CS_URL . 'assets/images/');
-define('CS_GITHUB_URL', 'https://github.com/msicknick/');
+define('CS_MS_URL', plugin_dir_url(__FILE__));
+define('CS_MS_JS_URL', CS_MS_URL . 'assets/js/');
+define('CS_MS_CSS_URL', CS_MS_URL . 'assets/css/');
+define('CS_MS_IMAGES_URL', CS_MS_URL . 'assets/images/');
+define('CS_MS_GITHUB_URL', 'https://github.com/msicknick/');
 
 /**
  * FUNCTIONS
  */
-require_once(CS_FUNCTIONS_PATH . 'helpers.php');
+require_once(CS_MS_INCLUDES_PATH . 'code-scanner-functions.php');
 
 /**
  * FRONT END
  */
-require_once(CS_CLASSES_PATH . 'code-scanner.php');
+require_once(CS_MS_INCLUDES_PATH . 'code-scanner.php');
 if (is_admin()) {
     add_action('plugins_loaded', array('Code_Scanner', 'init'));
 }

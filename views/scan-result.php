@@ -26,7 +26,7 @@ if ($this->scan_results['file_error_count'] > 0) {
                     <div class='cs-file' onclick="cs_showHideSlide(<?php echo "'spn-" . $directory . "-" . str_replace(".php", "", $filename) . "', 'div-" . $directory . "-" . str_replace(".php", "", $filename) . "'"; ?>);">
                         <i class='fa fa-file-o' aria-hidden='true' style='margin-right:10px;'></i><b><?php echo $filename; ?></b>
                         <?php if ($this->dir_type != 'core') { ?>
-                            <span style='margin-left:5px;font-size:13px;'><a href='#' onclick="window.open('<?php echo cs_get_edit_link($this->dir_type, $directory, $filename); ?>');event.stopPropagation();">Edit</a></span>
+                            <span style='margin-left:5px;font-size:13px;'><a href='#' onclick="window.open('<?php echo Code_Scanner_Functions::get_edit_link($this->dir_type, $directory, $filename); ?>');event.stopPropagation();">Edit</a></span>
                         <?php } ?>
                         <span class='cs-toggle-button dashicons dashicons-arrow-down' id='<?php echo "spn-" . $directory . "-" . str_replace(".php", "", $filename); ?>'></span>
                     </div>
