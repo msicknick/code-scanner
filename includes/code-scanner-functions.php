@@ -88,7 +88,7 @@ class Code_Scanner_Functions {
                 unset($filenames[$k]);
             }
             // Ignore scanning wp-content twice (Core files scan)
-            if ($d == 'wp-content') {
+            if ($d == basename(content_url())) {
                 unset($filenames[$k]);
             }
         }
